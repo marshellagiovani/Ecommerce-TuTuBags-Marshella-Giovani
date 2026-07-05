@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝜗ৎ TuTu Bags ˚˖𓍢ִ໋🦢˚ - Cute Pastel Slingbags</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-XXXXX-Y', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!-- CSS STYLING -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">𝜗ৎ TuTu Bags ˚˖𓍢ִ໋🦢˚</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#catalog">Katalog</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="wishlist-top-icon">
+                    <i class="fa-solid fa-heart" style="color: #E07A8A;"></i>
+                    <span id="wishlist-count">0</span>
+                </div>
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SPANDUK -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Cari Slingbag Gemas Pilihanmu di <br><span>𝜗ৎ TuTu Bags ˚˖𓍢ִ໋🦢˚</span></h1>
+            <p>Koleksi tas ritel kasual wanita pilihan tercomel dengan sentuhan empuk puffy, anyaman rajut rajik, tote motif floral estetik, serta pilihan gantungan tas (bag charm) beruang dan capybara yang super gemas untuk pelengkap tasmu!</p>
+            <a href="#catalog" class="btn-shop">Lihat Katalog Imut <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+        <!-- ABOUT ME SECTION -->
+        <section id="about-me" class="about-section">
+            <div class="about-container">
+                <h2 class="section-title">✨ Halo, Selamat Datang di TuTu Bags! ✨</h2>
+                <p>TuTu Bags berawal dari kecintaan kami terhadap dunia fashion kasual wanita yang bernuansa pastel, lembut, dan penuh kebahagiaan. Kami percaya bahwa sebuah tas kecil bukan hanya sekadar tempat menyimpan barang, melainkan pelengkap rasa percaya diri dan ekspresi keimutan harimu. Kini, kami juga menghadirkan koleksi bag charm plushie yang dirancang khusus untuk membuat tas kesayanganmu tampil makin estetik, personal, dan comel! Setiap product dikurasi dengan penuh cinta demi menghadirkan kualitas terbaik yang ramah di kantong.</p>
+            </div>
+        </section>
+
+        <!-- KATALOG -->
+        <section id="catalog" class="catalog-section">
+            <h2 class="section-title">𝜗ৎ Koleksi Tas Pastel Paling Comel ˚˖𓍢ִ໋🦢˚</h2>
+            
+            <!-- Filter, Cari & Tombol Reset -->
+            <div class="filter-container">
+                <input type="text" id="search-input" placeholder="Cari nama tas gemasmu..." oninput="filterProducts()">
+                <select id="category-filter" onchange="filterProducts()">
+                    <option value="all">Semua Jenis</option>
+                    <option value="shoulder bag">shoulder bag</option>
+                    <option value="sling bag">sling bag</option>
+                    <option value="tote bag">tote bag</option>
+                    <option value="pouch">pouch</option>
+                    <option value="backpack">backpack</option>
+                    <option value="hand bag">hand bag</option>
+                    <option value="bag charm">bag charm</option>
+                </select>
+                <select id="price-filter" onchange="filterProducts()">
+                    <option value="all">Semua Harga</option>
+                    <option value="under-100">Di bawah 100rb</option>
+                    <option value="above-100">100rb ke atas</option>
+                </select>
+                <button class="btn-reset" onclick="resetFilters()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            </div>
+
+            <!-- Grid 8 Produk Imut -->
+            <div class="products-grid" id="products-grid">
+                <!-- Diisi otomatis oleh JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL DETAIL -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- Diisi otomatis oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR KERANJANG -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-basket-shopping"></i> Keranjang Imutmu</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Diisi otomatis oleh JavaScript -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">Rp 0</span>
+            </div>
+            <button class="btn-checkout" onclick="showCheckoutForm()">Lanjut ke Checkout</button>
+        </div>
+    </div>
+
+    <!-- MODAL CHECKOUT -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content-checkout">
+            <!-- Loading Animation View -->
+            <div class="loading-overlay" id="loading-overlay">
+                <div class="spinner"></div>
+                <p style="font-weight:600; color: var(--pink-dark);">Menghubungkan ke Midtrans Secure Sandbox...</p>
+            </div>
+            <span class="close-modal" onclick="closeCheckout()">&times;</span>
+            <h2 style="margin-bottom:15px; font-size:20px; text-align:center;">Formulir Pengiriman & Pembayaran</h2>
+            
+            <form id="checkout-form" onsubmit="processCheckout(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap *</label>
+                        <input type="text" id="name" required minlength="3" placeholder="Nama lengkap kamu">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon / WA *</label>
+                        <input type="tel" id="phone" required pattern="[0-9]{9,14}" placeholder="Contoh: 08123456789">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">Alamat Email aktif *</label>
+                        <input type="email" id="email" required placeholder="nama@email.com">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="address">Alamat Pengiriman Lengkap *</label>
+                        <textarea id="address" required minlength="10" rows="2" placeholder="Nama jalan, nomor rumah, RT/RW, Kecamatan, Kota/Kabupaten"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal-code">Kode Pos *</label>
+                        <input type="text" id="postal-code" required pattern="[0-9]{5}" placeholder="5 digit angka">
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping">Opsi Kurir Pengiriman *</label>
+                        <select id="shipping" required>
+                            <option value="jne">JNE Regular (Rp 12.000)</option>
+                            <option value="jnt">J&T Express (Rp 11.000)</option>
+                            <option value="sicepat">SiCepat Halu (Rp 9.000)</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="payment">Metode Pembayaran (Gateway Terintegrasi) *</label>
+                        <select id="payment" required>
+                            <option value="gopay">GoPay / QRIS Otomatis</option>
+                            <option value="bva">BCA Virtual Account</option>
+                            <option value="mva">Mandiri Bill Payment</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="checkout-summary" style="margin: 15px 0; background: #FFF0F2; padding: 10px; border-radius: 10px; text-align:center;">
+                    <p>Total Belanja + Ongkir: <strong id="checkout-total-price" style="color:#E07A8A;">Rp 0</strong></p>
+                </div>
+                <button type="submit" class="btn-submit-order">Bayar Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER WITH SHOP REVIEWS -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>𝜗ৎ TuTu Bags 🦢</h3>
+                <p>Toko online ritel slingbag wanita dan aksesori gantungan tas paling cute dengan kombinasi warna pastel terbaik untuk pelengkap outfit aesthetic-mu.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Tautan</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about-me">About Me</a></li>
+                    <li><a href="#catalog">Katalog</a></li>
+                </ul>
+            </div>
+            <div class="footer-socials">
+                <h4 style="font-family: 'Fredoka', sans-serif; margin-bottom: 15px; color: var(--text-dark);">Ikuti Kami 𝜗ৎ</h4>
+                <div class="social-icons" style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="https://instagram.com/TuTuBags" target="_blank" style="text-decoration: none; color: var(--text-dark); font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
+                        <i class="fa-brands fa-instagram" style="color: #E07A8A; font-size: 18px;"></i> @TuTuBags
+                    </a>
+                    <a href="https://tiktok.com/@TuTuBags" target="_blank" style="text-decoration: none; color: var(--text-dark); font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
+                        <i class="fa-brands fa-tiktok" style="color: #E07A8A; font-size: 18px;"></i> @TuTuBags
+                    </a>
+                    <a href="https://wa.me/6283212345678" target="_blank" style="text-decoration: none; color: var(--text-dark); font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
+                        <i class="fa-brands fa-whatsapp" style="color: #E07A8A; font-size: 18px;"></i> 083212345678
+                    </a>
+                    <a href="mailto:TuTuBags123@gmail.com" style="text-decoration: none; color: var(--text-dark); font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
+                        <i class="fa-regular fa-envelope" style="color: #E07A8A; font-size: 18px;"></i> TuTuBags123@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- REVIEW TOKO -->
+        <div class="reviews-section">
+            <h3 class="reviews-title">𝜗ৎ Apa Kata Sahabat TuTu? 🦢</h3>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span>Sasha K.</span>
+                        <span><i class="fa-solid fa-star" style="color:var(--star-color);"></i> 5.0</span>
+                    </div>
+                    <p style="font-size: 13px; color:#666;">"Bahan Puffy Cloud-nya empuk bgt! Warnanya pastel lucu persis foto. Pengemasan cepat dan aman."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span>Dinda Amalia</span>
+                        <span><i class="fa-solid fa-star" style="color:var(--star-color);"></i> 4.9</span>
+                    </div>
+                    <p style="font-size: 13px; color:#666;">"Tas rajutnya rapi parah, estetik dipakai ngampus. Bakalan langganan terus di TuTu Bags ini mah!"</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span>Clarissa P.</span>
+                        <span><i class="fa-solid fa-star" style="color:var(--star-color);"></i> 5.0</span>
+                    </div>
+                    <p style="font-size: 13px; color:#666;">"Slingbag mini lilac-nya gemas pol, muat HP sama lipstik. Proses checkout simulasi pembayarannya praktis!"</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TuTu Bags. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT SCRIPTS -->
+    <script src="js/product.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
